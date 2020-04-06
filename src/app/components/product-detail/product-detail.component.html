@@ -2,9 +2,8 @@
      class="container main-container animated fadeIn fast">
 
     <h1>{{products.seller }} is selling : <span> {{products.name}}</span></h1>
+    <span routerLink="/messages" class="badge badge-success">Talk with {{products.seller}}</span>
     <br>
-    <span class="badge badge-success">Talk with {{products.seller}}</span>
-
     <div class="row">
         <div class="col-md-5">
             <img [src]="products.image"
@@ -20,32 +19,29 @@
             <div class="col-md-7 left">
                 <form class="form-horizontal">
                     <div class="form-group row">
-                        <label  class="col-xs-3 form-control-label">Quantity</label>
+                        <label for="quantity" class="col-xs-3 form-control-label">I want: </label>
                         <div class="col-xs-9">
-                            <h4 class="form-control-static"></h4>
+                            <h5 class="form-control-static"> {{quantity}}</h5>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label  class="col-xs-3 form-control-label">Amount</label>
+                        <label for="amount" class="col-xs-3 form-control-label">Total: </label>
                         <div class="col-xs-9">
-                            <h4 class="form-control-static"></h4>
+                            <h5 class="form-control-static">{{amount | currency:'USD':true:'1.2-2'}}</h5>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-xs-12">
-                            <a class="btn btn-outline-success" ><i class="fas fa-plus"></i></a>
-                            <a class="btn btn-outline-danger"><i class="fas fa-minus"></i></a>
+                            <a class="btn btn-outline-success" (click)="addToCart()"><i class="fas fa-plus"></i></a>
+                            <a class="btn btn-outline-danger" (click)="removeFromCart()"><i class="fas fa-minus"></i></a>
                         </div>
                     </div>
                 </form>
 
             </div>
 
-            <button
-                    type="button" class="btn btn-outline-danger">Back</button>
-
+            <button routerLink="/home" type="button" class="btn btn-outline-danger">Back</button>
         </div>
-
     </div>
 </div>
 

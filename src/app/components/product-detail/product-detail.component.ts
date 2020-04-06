@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BuyService, BuyItem } from '../../service/buy/buy.service';
+import { ProductsService, Product } from '../../service/product/products.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -6,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ProductDetailComponent implements OnInit {
+  product:Product;
+  cartItem:BuyItem
   public products: {
     id: string;
     seller: string;
@@ -24,9 +29,37 @@ export class ProductDetailComponent implements OnInit {
     price: 22
   };
 
-  constructor() { }
+  get quantity(): number {
+    return this.cartItem ? this.cartItem.count : 0;
+  }
+
+  get amount(): number {
+    return this.cartItem ? this.cartItem.amount : 0;
+  }
+
+  constructor(private route: ActivatedRoute,
+              private buyService: BuyService,
+              private productsService: ProductsService) { }
 
   ngOnInit(): void {
+    // this.route
+    //   .params
+    //   .subscribe(params => {
+    //     // Get the product id
+    //     let id: string = params["id"];
+    //     // Return the product from ProductService
+    //     this.productService.getProduct(id).subscribe((product: Product) => this.product = product);
+    //     // Return the cart item
+    //     this.cartItem = this.cartService.findItem(id);
+    //   });
+  }
+
+  addToCart() {
+    this.cartItem = this.buyService.addProduct(this.product);
+  }
+
+  removeFromCart() {
+    this.cartItem = this.buyService.removeProduct(this.product);
   }
 
 }
