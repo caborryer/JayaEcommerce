@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+.right {
+    position: absolute;
+    right: 100px;
+    width: 500px;
+    bottom: 60px;
+    border: 3px solid #73AD21;
+    padding: 30px;
+}
+
+.product-container {
+    height: 650px;
+    width: 850px;
+    border: 1px white;
+}
+
+.product-container1 {
+    height: 650px;
+    width: 550px;
+    border: 1px white;
+}
+

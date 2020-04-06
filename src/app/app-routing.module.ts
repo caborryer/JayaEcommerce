@@ -1,8 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { ProductsComponent } from './components/products/products.component';
+import { UserComponent } from './components/user/user.component';
+import { ProductComponent } from './components/product/product.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'home', component: HomeComponent},
+  {path: 'messages', component: ChatComponent},
+  {path: 'products', component: ProductsComponent},
+  {path: 'product/:id', component: ProductComponent},
+  {path: 'profile', component: UserComponent},
+  {path: '**', pathMatch: 'full', redirectTo: 'home'}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "jayaEcommerce": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "jayaEcommerce"
+    }
+  },
+  "defaultProject": "jayaEcommerce",
+  "cli": {
+    "analytics": "6eaf8a6e-7100-43e1-95d7-5d7ac1f2b3fb"
+  }
 }
