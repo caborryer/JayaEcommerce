@@ -1,11 +1,13 @@
 <div class="container">
     <app-carousel></app-carousel>
+    <hr>
+    <br>
     <div class="card-columns">
-        <div class="card" >
-<!--            <img src="..." class="card-img-top" alt="...">-->
+        <div class="card" *ngFor="let product of products" >
+            <img [src]="product.image" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Name</h5>
-                <button type="button" class="btn btn-success">Buy</button>
+                <h5 class="card-title">{{product.name}}</h5>
+                <button type="button" [routerLink]="['/productDetails', product.id]"  class="btn btn-success">Buy</button>
             </div>
         </div>
     </div>

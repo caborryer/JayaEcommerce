@@ -4,6 +4,7 @@ export interface ProductsInterface {
   description: string;
   price: number;
   units: number;
+  seller: string;
   image?: string;
   fileRef?: string;
 }
