@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable} from 'rxjs';
 import { map} from 'rxjs/operators';
 import {ProductsInterface } from '../../models/products.interface';
+
 
 
 export interface Product {
@@ -17,13 +18,16 @@ export interface Product {
   providedIn: 'root'
 })
 export class ProductsService {
+  private productCollection: AngularFirestoreCollection<ProductsInterface>;
   private productsUrl = "products";
 
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore) {
+    this.productCollection = db.collection<ProductsInterface>('products');
+  }
 
   public getAllProducts(): Observable <ProductsInterface[]>{
-    return this.db.collection('products')
+    return this.productCollection
       .snapshotChanges()
       .pipe(
         map(actions =>
@@ -37,5 +41,9 @@ export class ProductsService {
 
   public getProduct(id : ProductsInterface): Observable<ProductsInterface>{
     return this.db.doc<ProductsInterface>(`products/${id}`).valueChanges();
+  }
+
+  public deleteProductById(product: ProductsInterface){
+    return this.productCollection.doc(product.id).delete();
   }
 }
