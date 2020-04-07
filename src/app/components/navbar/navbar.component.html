@@ -10,10 +10,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link"  routerLink="/home">Home</a>
+                <a class="nav-link" routerLink="/home">Home</a>
             </li>
             <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link"  routerLink="/products">Products</a>
+                <a class="nav-link" *ngIf="authService.user.uid"  routerLink="/products">Products</a>
             </li>
         </ul>
         <ul class="navbar-nav left">
@@ -22,12 +22,12 @@
                     Menu
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="/profile">Mi profile</a>
-                    <a class="dropdown-item"  routerLink="/messages">Messages</a>
+                    <button class="dropdown-item" *ngIf="authService.user.uid" routerLink="/profile">Mi profile</button>
+                    <button class="dropdown-item" *ngIf="authService.user.uid"  routerLink="/messages">Messages</button>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" routerLink="/products">My products</a>
-                    <a class="dropdown-item"  href="#">Logout </a>
-                    <a class="dropdown-item"   href="#">Login</a>
+                    <button class="dropdown-item" *ngIf="authService.user.uid" routerLink="/products">My products</button>
+                    <button class="dropdown-item" *ngIf="authService.user.uid"  (click)="authService.logout()">Logout </button>
+                    <button class="dropdown-item" *ngIf="!authService.user.uid" (click)="login('google')">Login</button>
                 </div>
             </li>
         </ul>

@@ -21,6 +21,7 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import {environment} from '../environments/environment';
     ProductsComponent,
     UserComponent,
     MyProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+
   ],
   imports: [
     BrowserModule,

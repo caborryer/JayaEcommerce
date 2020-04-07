@@ -5,6 +5,7 @@ export interface ProductsInterface {
   price: number;
   units: number;
   seller: string;
+  uid?: string;
   image?: string;
   fileRef?: string;
 }
