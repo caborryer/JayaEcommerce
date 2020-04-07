@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable} from 'rxjs';
-import { map} from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import {ProductsInterface } from '../../models/products.interface';
+import { FileInterface } from '../../models/file.interface';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 
 
@@ -20,10 +22,14 @@ export interface Product {
 export class ProductsService {
   private productCollection: AngularFirestoreCollection<ProductsInterface>;
   private productsUrl = "products";
+  private filePath: any;
+  private url : Observable<string>;
 
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore,
+              private storage: AngularFireStorage) {
     this.productCollection = db.collection<ProductsInterface>('products');
+
   }
 
   public getAllProducts(): Observable <ProductsInterface[]>{
@@ -52,6 +58,25 @@ export class ProductsService {
   }
 
   public newProduct(product: ProductsInterface) {
+
+  }
+
+   private  uploadImage(product:ProductsInterface, image: FileInterface) {
+    this.filePath = `images/${image.name}`;
+    const fileRef = this.storage.ref(this.filePath);
+    const task = this.storage.upload(this.filePath, image);
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(urlImage => {
+            this.url = urlImage;
+            console.log('URL_IMAGE', urlImage);
+            console.log('PRODUCT', product);
+
+          })
+        })
+      ).subscribe();
+
 
   }
 }

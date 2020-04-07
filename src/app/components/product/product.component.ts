@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   styles: []
 })
 export class ProductComponent implements OnInit {
+  private image: any;
   public product$: Observable<ProductsInterface>;
   public products$: Observable<ProductsInterface[]>;
 
@@ -35,6 +36,10 @@ export class ProductComponent implements OnInit {
   addNewProduct(data: ProductsInterface) {
     console.log('New product', data)
 
+  }
+
+  handleImage(event: any): void{
+    this.image = event.target.files[0];
   }
 
   updateProduct( product: ProductsInterface) {
