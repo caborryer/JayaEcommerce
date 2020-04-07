@@ -6,6 +6,6 @@ export interface ProductsInterface {
   units: number;
   seller?: string;
   uid?: string;
-  image?: string;
+  image?: any;
   fileRef?: string;
 }

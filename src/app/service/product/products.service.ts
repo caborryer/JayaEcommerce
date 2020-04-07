@@ -60,6 +60,22 @@ export class ProductsService {
   public newProduct(product: ProductsInterface) {
 
   }
+  public preAddAndUpdate(product: ProductsInterface, image: FileInterface): void{
+    this.uploadImage(product, image);
+
+  }
+
+  private saveProduct(product: ProductsInterface){
+    const productObj= {
+      name: product.name,
+      description: product.description,
+      units: product.units,
+      price: product.price,
+      image: this.url,
+      fileRef: this.filePath,
+    };
+    this.productCollection.add(productObj)
+  }
 
    private  uploadImage(product:ProductsInterface, image: FileInterface) {
     this.filePath = `images/${image.name}`;
@@ -70,9 +86,7 @@ export class ProductsService {
         finalize(() => {
           fileRef.getDownloadURL().subscribe(urlImage => {
             this.url = urlImage;
-            console.log('URL_IMAGE', urlImage);
-            console.log('PRODUCT', product);
-
+            this.saveProduct(product);
           })
         })
       ).subscribe();

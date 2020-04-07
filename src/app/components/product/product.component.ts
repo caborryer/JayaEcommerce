@@ -35,11 +35,32 @@ export class ProductComponent implements OnInit {
 
   addNewProduct(data: ProductsInterface) {
     console.log('New product', data)
-
+    this.productsService.preAddAndUpdate(data, this.image)
   }
 
   handleImage(event: any): void{
     this.image = event.target.files[0];
+  }
+
+  deleteProduct(product: ProductsInterface){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You won't be able to revert this!`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(result => {
+      if (result.value) {
+        this.productsService.deleteProductById(product).then(() => {
+          Swal.fire('Deleted', 'Your product has been deleted.', 'success')
+        }) .catch((error) => {
+          Swal.fire('Error!', 'There was an error deleting this product', 'error')
+        });
+
+      }
+    })
   }
 
   updateProduct( product: ProductsInterface) {
