@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import {Message} from '../../models/message.interface';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 import { map} from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
@@ -9,11 +11,22 @@ import { AuthService } from '../auth.service';
   providedIn: 'root'
 })
 export class ChatService {
+  public user: any = {};
   private itemsCollection: AngularFirestoreCollection<Message>;
   public chats: Message[] = [];
 
   constructor(private afs: AngularFirestore,
-              public auth: AuthService) { }
+              public auth: AngularFireAuth) {
+
+    this.auth.authState.subscribe( user => {
+      // console.log('Null state: ', user);
+      if (!user) {
+        return;
+      }
+      this.user.name = user.displayName;
+      this.user.uid = user.uid;
+    });
+  }
 
   loadMessages() {
     this.itemsCollection = this.afs.collection<Message>('chats',
@@ -21,22 +34,21 @@ export class ChatService {
       .limit(5));
     return this.itemsCollection.valueChanges()
       .pipe( map((messages: Message[]) => {
-        console.log(messages);
+        // console.log(messages);
         this.chats = [];
         for (let message of messages) {
           this.chats.unshift(message);
         }
         return this.chats;
-        // this.chats = messages;
       }));
   }
 
   addMessage(text:string) {
     let message: Message = {
-      name: 'Cami',
+      name: this.user.name,
       message: text,
       date: new Date().getTime(),
-      // uid: this.user.uid
+      uid: this.user.uid
     };
     return this.itemsCollection.add(message);
 

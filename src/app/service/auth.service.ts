@@ -9,8 +9,9 @@ export class AuthService {
   public user: any = {};
 
   constructor(public auth: AngularFireAuth) {
+
     this.auth.authState.subscribe( user => {
-      console.log('Null state: ', user);
+      // console.log('Null state: ', user);
 
       if (!user) {
         return;

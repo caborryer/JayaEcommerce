@@ -26,7 +26,6 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    console.log(this.message);
     if (this.message.length === 0) {
       return;
     }
