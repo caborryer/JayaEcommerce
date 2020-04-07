@@ -14,12 +14,18 @@ import { UserComponent } from './components/user/user.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
+// Forms
+import { FormsModule} from '@angular/forms';
+
 // Firebase
 
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+
+// Service
+import { ChatService } from './service/chat/chat.service';
 
 
 @NgModule({
@@ -39,12 +45,15 @@ import {environment} from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+
   ],
   providers: [
-    {provide: BUCKET, useValue: 'gs://jayaecommerce-a8600.appspot.com'}
+    {provide: BUCKET, useValue: 'gs://jayaecommerce-a8600.appspot.com'},
+    ChatService
   ],
   bootstrap: [AppComponent]
 })
