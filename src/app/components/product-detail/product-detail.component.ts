@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BuyService, BuyItem } from '../../service/buy/buy.service';
 import { ProductsService, Product } from '../../service/product/products.service';
 import {ActivatedRoute} from '@angular/router';
+import { Observable } from 'rxjs';
+import { ProductsInterface } from '../../models/products.interface';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,23 +13,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ProductDetailComponent implements OnInit {
   product:Product;
   cartItem:BuyItem
-  public products: {
-    id: string;
-    seller: string;
-    name: string;
-    image: string;
-    description: string;
-    units: number;
-    price: number;
-  } = {
-    id: '1',
-    name: 'Product one',
-    image: 'https://http2.mlstatic.com/D_NQ_NP_770026-MCO40460026819_012020-O.jpg',
-    seller: 'Sam',
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-    units: 2,
-    price: 22
-  };
+  public product$: Observable<ProductsInterface>
 
   get quantity(): number {
     return this.cartItem ? this.cartItem.count : 0;
@@ -42,7 +28,8 @@ export class ProductDetailComponent implements OnInit {
               private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.products.id = this.route.snapshot.params.id;
+    const idProduct = this.route.snapshot.params.id;
+    this.product$ = this.productsService.getProduct(idProduct);
     // this.route
     //   .params
     //   .subscribe(params => {

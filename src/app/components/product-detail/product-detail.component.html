@@ -1,20 +1,20 @@
-<div *ngIf="products"
+<div *ngIf="product$ | async as product"
      class="container main-container animated fadeIn fast">
 
-    <h1>{{products.seller }} is selling : <span> {{products.name}}</span></h1>
-    <span routerLink="/messages" class="badge badge-success">Talk with {{products.seller}}</span>
+    <h1>{{product.seller }} is selling : <span> {{product.name}}</span></h1>
+    <span routerLink="/messages" class="badge badge-success">Talk with {{product.seller}}</span>
     <br>
     <div class="row">
         <div class="col-md-5">
-            <img [src]="products.image"
+            <img [src]="product.image"
                  class="img-thumbnail img-fluid">
         </div>
         <div class="col-md-7">
             <h3>Description</h3>
             <hr>
-            <p class="text-justify">{{products.description}}</p>
-            <p> Available units : {{products.units}}</p>
-            <p> Price {{products.price | currency: 'USD': '$': '1.2-2'}}</p>
+            <p class="text-justify">{{product.description}}</p>
+            <p> Available units : {{product.units}}</p>
+            <p> Price {{product.price | currency: 'USD': '$': '1.2-2'}}</p>
 
             <div class="col-md-7 left">
                 <form class="form-horizontal">

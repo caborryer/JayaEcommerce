@@ -34,4 +34,8 @@ export class ProductsService {
         }))
       )
   }
+
+  public getProduct(id : ProductsInterface): Observable<ProductsInterface>{
+    return this.db.doc<ProductsInterface>(`products/${id}`).valueChanges();
+  }
 }
