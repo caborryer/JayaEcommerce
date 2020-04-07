@@ -1,1 +1,95 @@
-<p>product works!</p>
+<cdk-virtual-scroll-viewport itemSize="50" class="product-container1">
+    <div class="container">
+        <div class="card mb-3" *cdkVirtualFor=" let product of products$" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img [src]="product.image" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <button type="button"
+                                class="btn btn-warning"
+                                [routerLink]="['/product', product.id]">
+                            <i class="fa fa-pen"></i></button>
+                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cdk-virtual-scroll-viewport>
+
+
+<div class="right">
+    <div class="row text-right">
+        <div class="col">
+            <button routerLink="/products" class="btn btn-danger">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>
+        </div>
+    </div>
+
+    <div class="row animated fadeIn faster">
+        <div class="col">
+            <form>
+                <div class="form-group">
+                    <label> Name</label>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Product name"
+                           required
+                           name="name">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Description"
+                           required
+                           name="description"
+                    >
+                </div>
+                <div class="form-group">
+                    <label>Select a picture</label>
+                    <input type="file"
+                           class="form-control"
+                           required
+                           name="image">
+                    <button
+                            type="button"
+                            class="btn btn-outline-danger w-50">Select a picture
+                        <i class="fa fa-upload"></i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect1">Units available</label>
+                    <select class="form-control"
+                            id="exampleSelect1"
+                            name="units">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label> Price</label>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Price"
+                           required
+                           name="price">
+                </div>
+                <hr>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success ">Create/Save
+                        <i class="fa fa-save"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

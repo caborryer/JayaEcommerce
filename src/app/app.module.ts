@@ -9,13 +9,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ProductComponent } from './components/product/product.component';
-import { ProductsComponent } from './components/products/products.component';
 import { UserComponent } from './components/user/user.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 // Forms
 import { FormsModule} from '@angular/forms';
+
+// Virtual scroll
+import { ScrollingModule} from '@angular/cdk/scrolling';
 
 // Firebase
 
@@ -36,7 +38,6 @@ import { ChatService } from './service/chat/chat.service';
     CarouselComponent,
     ChatComponent,
     ProductComponent,
-    ProductsComponent,
     UserComponent,
     MyProductsComponent,
     ProductDetailComponent,
@@ -46,6 +47,7 @@ import { ChatService } from './service/chat/chat.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ScrollingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,

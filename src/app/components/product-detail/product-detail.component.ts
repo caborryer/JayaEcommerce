@@ -12,8 +12,8 @@ import { ProductsInterface } from '../../models/products.interface';
 })
 export class ProductDetailComponent implements OnInit {
   product:Product;
-  cartItem:BuyItem
-  public product$: Observable<ProductsInterface>
+  cartItem:BuyItem;
+  public product$: Observable<ProductsInterface>;
 
   get quantity(): number {
     return this.cartItem ? this.cartItem.count : 0;
