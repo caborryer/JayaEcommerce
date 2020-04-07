@@ -3,7 +3,7 @@
     <hr>
     <br>
     <div class="card-columns">
-        <div class="card" *ngFor="let product of products" >
+        <div class="card" *ngFor="let product of products$ | async" >
             <img [src]="product.image"  class="img-thumbnail img-fluid" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>

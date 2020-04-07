@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "jayaecommerce-a8600": {
+      "hosting": {
+        "jayaEcommerce": [
+          "jayaecommerce-a8600"
+        ]
+      }
+    }
+  }
+}

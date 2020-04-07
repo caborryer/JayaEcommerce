@@ -14,7 +14,7 @@
             <hr>
             <p class="text-justify">{{products.description}}</p>
             <p> Available units : {{products.units}}</p>
-            <p> Price {{products.price | currency: 'USD': true: '1.2-2'}}</p>
+            <p> Price {{products.price | currency: 'USD': '$': '1.2-2'}}</p>
 
             <div class="col-md-7 left">
                 <form class="form-horizontal">
@@ -27,7 +27,7 @@
                     <div class="form-group row">
                         <label for="amount" class="col-xs-3 form-control-label">Total: </label>
                         <div class="col-xs-9">
-                            <h5 class="form-control-static">{{amount | currency:'USD':true:'1.2-2'}}</h5>
+                            <h5 class="form-control-static">{{amount | currency:'USD':'$':'1.2-2'}}</h5>
                         </div>
                     </div>
                     <div class="form-group row">
