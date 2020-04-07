@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ProductsInterface } from '../../models/products.interface';
 import { ProductsService } from '../../service/product/products.service';
 import Swal from 'sweetalert2';
-import { catchError } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-my-products',
@@ -38,7 +38,5 @@ export class MyProductsComponent implements OnInit {
 
       }
     })
-
   }
-
 }

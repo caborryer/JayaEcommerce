@@ -1,10 +1,10 @@
 export interface ProductsInterface {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   price: number;
   units: number;
-  seller: string;
+  seller?: string;
   uid?: string;
   image?: string;
   fileRef?: string;

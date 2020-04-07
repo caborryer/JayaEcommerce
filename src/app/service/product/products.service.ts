@@ -46,4 +46,12 @@ export class ProductsService {
   public deleteProductById(product: ProductsInterface){
     return this.productCollection.doc(product.id).delete();
   }
+
+  public editProductById(product: ProductsInterface) {
+    return this.productCollection.doc(product.id).update(product);
+  }
+
+  public newProduct(product: ProductsInterface) {
+
+  }
 }

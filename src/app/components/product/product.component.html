@@ -33,13 +33,13 @@
 
     <div class="row animated fadeIn faster">
         <div class="col">
-            <form>
+            <form [formGroup]="newProductForm" (ngSubmit)="addNewProduct(newProductForm.value)">
                 <div class="form-group">
                     <label> Name</label>
                     <input type="text"
                            class="form-control"
                            placeholder="Product name"
-                           required
+                           formControlName="name"
                            name="name">
                 </div>
                 <div class="form-group">
@@ -47,7 +47,7 @@
                     <input type="text"
                            class="form-control"
                            placeholder="Description"
-                           required
+                           formControlName="description"
                            name="description"
                     >
                 </div>
@@ -55,7 +55,7 @@
                     <label>Select a picture</label>
                     <input type="file"
                            class="form-control"
-                           required
+                           formControlName="image"
                            name="image">
                     <button
                             type="button"
@@ -67,6 +67,7 @@
                     <label for="exampleSelect1">Units available</label>
                     <select class="form-control"
                             id="exampleSelect1"
+                            formControlName="units"
                             name="units">
                         <option>1</option>
                         <option>2</option>
@@ -80,12 +81,12 @@
                     <input type="text"
                            class="form-control"
                            placeholder="Price"
-                           required
+                           formControlName="price"
                            name="price">
                 </div>
                 <hr>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success ">Create/Save
+                    <button type="submit" class="btn btn-success"> Create/Save
                         <i class="fa fa-save"></i>
                     </button>
                 </div>

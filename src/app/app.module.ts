@@ -15,6 +15,7 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 
 // Forms
 import { FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 // Virtual scroll
 import { ScrollingModule} from '@angular/cdk/scrolling';
@@ -47,6 +48,7 @@ import { ChatService } from './service/chat/chat.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     ScrollingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
