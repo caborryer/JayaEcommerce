@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductsInterface } from '../../models/products.interface';
 import { ProductsService } from '../../service/product/products.service';
@@ -16,6 +16,8 @@ export class ProductComponent implements OnInit {
   public product$: Observable<ProductsInterface>;
   public products$: Observable<ProductsInterface[]>;
 
+  @Input() product: ProductsInterface
+
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService) { }
@@ -31,10 +33,11 @@ export class ProductComponent implements OnInit {
     this.products$ = this.productsService.getAllProducts();
     const idProduct = this.route.snapshot.params.id;
     this.product$ = this.productsService.getProduct(idProduct);
+
   }
 
   addNewProduct(data: ProductsInterface) {
-    console.log('New product', data)
+    console.log('New addAndDeleteProduct', data)
     this.productsService.preAddAndUpdate(data, this.image)
   }
 
@@ -54,9 +57,9 @@ export class ProductComponent implements OnInit {
     }).then(result => {
       if (result.value) {
         this.productsService.deleteProductById(product).then(() => {
-          Swal.fire('Deleted', 'Your product has been deleted.', 'success')
+          Swal.fire('Deleted', 'Your addAndDeleteProduct has been deleted.', 'success')
         }) .catch((error) => {
-          Swal.fire('Error!', 'There was an error deleting this product', 'error')
+          Swal.fire('Error!', 'There was an error deleting this addAndDeleteProduct', 'error')
         });
 
       }
@@ -71,9 +74,9 @@ export class ProductComponent implements OnInit {
     }).then(result => {
       if (result.value) {
         this.productsService.editProductById(product).then(() => {
-          Swal.fire('Updated', 'Your product has been update.', 'success')
+          Swal.fire('Updated', 'Your addAndDeleteProduct has been update.', 'success')
         }) .catch((error) => {
-          Swal.fire('Error!', 'There was an error updating this product', 'error')
+          Swal.fire('Error!', 'There was an error updating this addAndDeleteProduct', 'error')
         });
       }
     });

@@ -33,10 +33,10 @@ export class ProductDetailComponent implements OnInit {
     // this.route
     //   .params
     //   .subscribe(params => {
-    //     // Get the product id
+    //     // Get the addAndDeleteProduct id
     //     let id: string = params["id"];
-    //     // Return the product from ProductService
-    //     this.productService.getProduct(id).subscribe((product: Product) => this.product = product);
+    //     // Return the addAndDeleteProduct from ProductService
+    //     this.productService.getProduct(id).subscribe((addAndDeleteProduct: Product) => this.addAndDeleteProduct = addAndDeleteProduct);
     //     // Return the cart item
     //     this.cartItem = this.cartService.findItem(id);
     //   });

@@ -57,9 +57,9 @@ export class BuyService {
       item.count--;
       // Substract price
       item.amount -= product.price;
-      // Check was that the last product?
+      // Check was that the last addAndDeleteProduct?
       if (!item.count) {
-        // It was last product
+        // It was last addAndDeleteProduct
         // Delete item from items
         this.remove(item);
         // We must return null

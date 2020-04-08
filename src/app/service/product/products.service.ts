@@ -53,13 +53,14 @@ export class ProductsService {
     return this.productCollection.doc(product.id).delete();
   }
 
-  public editProductById(product: ProductsInterface) {
-    return this.productCollection.doc(product.id).update(product);
+  public editProductById(product: ProductsInterface, newImage?: FileInterface) {
+    if (newImage) {
+      this.uploadImage(product, newImage);
+    } else {
+      return this.productCollection.doc(product.id).update(product);
+    }
   }
 
-  public newProduct(product: ProductsInterface) {
-
-  }
   public preAddAndUpdate(product: ProductsInterface, image: FileInterface): void{
     this.uploadImage(product, image);
 
@@ -74,7 +75,11 @@ export class ProductsService {
       image: this.url,
       fileRef: this.filePath,
     };
-    this.productCollection.add(productObj)
+    if(product.id) {
+      return this.productCollection.doc(product.id).update(productObj)
+    } else {
+      this.productCollection.add(productObj)
+    }
   }
 
    private  uploadImage(product:ProductsInterface, image: FileInterface) {

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { UserComponent } from './components/user/user.component';
-import { ProductComponent } from './components/product/product.component';
+import { ProductComponent } from './components/addAndDeleteProduct/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { AuthGuard } from './service/auth.guard';
 import { MyProductsComponent } from './components/my-products/my-products.component';

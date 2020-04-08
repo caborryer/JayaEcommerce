@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ChatComponent } from './components/chat/chat.component';
-import { ProductComponent } from './components/product/product.component';
+import { ProductComponent } from './components/addAndDeleteProduct/product.component';
 import { UserComponent } from './components/user/user.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
@@ -29,6 +29,7 @@ import {environment} from '../environments/environment';
 
 // Service
 import { ChatService } from './service/chat/chat.service';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ChatService } from './service/chat/chat.service';
     UserComponent,
     MyProductsComponent,
     ProductDetailComponent,
+    EditProductComponent,
 
   ],
   imports: [

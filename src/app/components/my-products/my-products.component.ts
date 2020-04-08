@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styles: []
 })
 export class MyProductsComponent implements OnInit {
+
   public products$: Observable<ProductsInterface[]>
 
   constructor(private productsService: ProductsService) { }
@@ -31,12 +32,19 @@ export class MyProductsComponent implements OnInit {
     }).then(result => {
       if (result.value) {
        this.productsService.deleteProductById(product).then(() => {
-         Swal.fire('Deleted', 'Your product has been deleted.', 'success')
+         Swal.fire('Deleted', 'Your addAndDeleteProduct has been deleted.', 'success')
        }) .catch((error) => {
-          Swal.fire('Error!', 'There was an error deleting this product', 'error')
+          Swal.fire('Error!', 'There was an error deleting this addAndDeleteProduct', 'error')
         });
 
       }
     })
   }
+
+  editProduct(product: ProductsInterface) {
+
+
+  }
+
+
 }
