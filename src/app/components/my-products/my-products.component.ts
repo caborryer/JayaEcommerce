@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductsInterface } from '../../models/products.interface';
 import { ProductsService } from '../../service/product/products.service';
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styles: []
 })
 export class MyProductsComponent implements OnInit {
+
 
   public products$: Observable<ProductsInterface[]>
 
@@ -26,8 +27,8 @@ export class MyProductsComponent implements OnInit {
       text: `You won't be able to revert this!`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
       confirmButtonText: 'Yes, delete it!'
     }).then(result => {
       if (result.value) {
@@ -39,11 +40,6 @@ export class MyProductsComponent implements OnInit {
 
       }
     })
-  }
-
-  editProduct(product: ProductsInterface) {
-
-
   }
 
 

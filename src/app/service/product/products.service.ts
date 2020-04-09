@@ -63,10 +63,10 @@ export class ProductsService {
 
   public preAddAndUpdate(product: ProductsInterface, image: FileInterface): void{
     this.uploadImage(product, image);
-
   }
 
   private saveProduct(product: ProductsInterface){
+    console.log('ProductService', product)
     const productObj= {
       name: product.name,
       description: product.description,
@@ -78,11 +78,11 @@ export class ProductsService {
     if(product.id) {
       return this.productCollection.doc(product.id).update(productObj)
     } else {
-      this.productCollection.add(productObj)
+      return this.productCollection.add(productObj)
     }
   }
 
-   private  uploadImage(product:ProductsInterface, image: FileInterface) {
+   private uploadImage(product:ProductsInterface, image: FileInterface) {
     this.filePath = `images/${image.name}`;
     const fileRef = this.storage.ref(this.filePath);
     const task = this.storage.upload(this.filePath, image);

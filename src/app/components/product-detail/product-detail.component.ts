@@ -28,8 +28,8 @@ export class ProductDetailComponent implements OnInit {
               private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    const idProduct = this.route.snapshot.params.id;
-    this.product$ = this.productsService.getProduct(idProduct);
+    const id = this.route.snapshot.params.id;
+    this.product$ = this.productsService.getProduct(id);
     // this.route
     //   .params
     //   .subscribe(params => {

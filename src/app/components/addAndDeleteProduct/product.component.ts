@@ -51,8 +51,8 @@ export class ProductComponent implements OnInit {
       text: `You won't be able to revert this!`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
       confirmButtonText: 'Yes, delete it!'
     }).then(result => {
       if (result.value) {
@@ -65,22 +65,5 @@ export class ProductComponent implements OnInit {
       }
     })
   }
-
-  updateProduct( product: ProductsInterface) {
-    Swal.fire({
-      title: 'Wait',
-      text: 'Saving information',
-      icon: 'info',
-    }).then(result => {
-      if (result.value) {
-        this.productsService.editProductById(product).then(() => {
-          Swal.fire('Updated', 'Your addAndDeleteProduct has been update.', 'success')
-        }) .catch((error) => {
-          Swal.fire('Error!', 'There was an error updating this addAndDeleteProduct', 'error')
-        });
-      }
-    });
-  }
-
 
 }

@@ -7,6 +7,7 @@ import { ProductComponent } from './components/addAndDeleteProduct/product.compo
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { AuthGuard } from './service/auth.guard';
 import { MyProductsComponent } from './components/my-products/my-products.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'products', component: MyProductsComponent},
   {path: 'productDetails/:id', component: ProductDetailComponent},
   {path: 'product/:id', component: ProductComponent},
+  {path: 'editProduct/:id', component: EditProductComponent},
   {path: 'profile', component: UserComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
