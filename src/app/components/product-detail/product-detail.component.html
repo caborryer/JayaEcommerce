@@ -1,8 +1,10 @@
 <div *ngIf="product$ | async as product"
      class="container main-container animated fadeIn fast">
-
-    <h1>{{product.seller }} is selling : <span> {{product.name}}</span></h1>
-    <span routerLink="/messages" class="badge badge-success">Talk with {{product.seller}}</span>
+    <div [ngClass]="{'text-right': chatService.user.uid == product.seller}">
+        <h1>{{product.seller }} is selling : <span> {{product.name}}</span></h1>
+        <span routerLink="/messages" class="badge" [ngClass]="{'badge-success': chatService.user.uid == product.seller,
+                                      'badge-primary': chatService.user.uid != product.seller}">Talk with {{product.seller}}</span>
+    </div>
     <br>
     <div class="row">
         <div class="col-md-5">
@@ -33,7 +35,8 @@
                     <div class="form-group row">
                         <div class="col-xs-12">
                             <a class="btn btn-outline-success" (click)="addToCart()"><i class="fas fa-plus"></i></a>
-                            <a class="btn btn-outline-danger" (click)="removeFromCart()"><i class="fas fa-minus"></i></a>
+                            <a class="btn btn-outline-danger" (click)="removeFromCart()"><i
+                                    class="fas fa-minus"></i></a>
                         </div>
                     </div>
                 </form>

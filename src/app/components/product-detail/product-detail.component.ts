@@ -4,6 +4,8 @@ import { ProductsService, Product } from '../../service/product/products.service
 import {ActivatedRoute} from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProductsInterface } from '../../models/products.interface';
+import { ChatService } from '../../service/chat/chat.service';
+import {Message} from '../../models/message.interface';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,6 +15,7 @@ import { ProductsInterface } from '../../models/products.interface';
 export class ProductDetailComponent implements OnInit {
   product:Product;
   cartItem:BuyItem;
+  chat: Message
   public product$: Observable<ProductsInterface>;
 
   get quantity(): number {
@@ -25,7 +28,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private buyService: BuyService,
-              private productsService: ProductsService) { }
+              private productsService: ProductsService,
+              public chatService:ChatService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;

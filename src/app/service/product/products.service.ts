@@ -5,6 +5,7 @@ import { finalize, map } from 'rxjs/operators';
 import {ProductsInterface } from '../../models/products.interface';
 import { FileInterface } from '../../models/file.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 
@@ -20,6 +21,7 @@ export interface Product {
   providedIn: 'root'
 })
 export class ProductsService {
+  public user: any = {};
   private productCollection: AngularFirestoreCollection<ProductsInterface>;
   private productsUrl = "products";
   private filePath: any;
@@ -27,8 +29,19 @@ export class ProductsService {
 
 
   constructor(private db: AngularFirestore,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+             public auth: AngularFireAuth) {
     this.productCollection = db.collection<ProductsInterface>('products');
+
+    this.auth.authState.subscribe( user => {
+      // console.log('Null state from Product: ', user);
+      if (!user) {
+        return;
+      }
+      this.user.name = user.displayName;
+      this.user.uid = user.uid;
+      this.user.profileImage = user.photoURL;
+    });
 
   }
 
@@ -72,6 +85,8 @@ export class ProductsService {
       description: product.description,
       units: product.units,
       price: product.price,
+      seller: this.user.name,
+      uid: this.user.uid,
       image: this.url,
       fileRef: this.filePath,
     };

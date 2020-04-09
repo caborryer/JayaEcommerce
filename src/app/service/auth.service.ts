@@ -14,7 +14,7 @@ export class AuthService {
     this.userData$ = this.auth.authState
 
     this.userData$.subscribe( user => {
-      console.log('Null state: ', user);
+      // console.log('Null state: ', user);
       if (!user) {
         return;
       }
