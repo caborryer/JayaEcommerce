@@ -7,5 +7,6 @@ export interface ProductsInterface {
   seller?: string;
   uid?: string;
   image?: any;
+  userImage?: string;
   fileRef?: string;
 }

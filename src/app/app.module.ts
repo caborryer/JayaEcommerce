@@ -30,6 +30,7 @@ import {environment} from '../environments/environment';
 // Service
 import { ChatService } from './service/chat/chat.service';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { SecureDomPipe } from './pipes/secure-dom.pipe';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     MyProductsComponent,
     ProductDetailComponent,
     EditProductComponent,
+    SecureDomPipe,
 
   ],
   imports: [

@@ -40,16 +40,14 @@ export class ProductDetailComponent implements OnInit {
     //     // Get the addAndDeleteProduct id
     //     let id: string = params["id"];
     //     // Return the addAndDeleteProduct from ProductService
-    //     this.productService.getProduct(id).subscribe((addAndDeleteProduct: Product) => this.addAndDeleteProduct = addAndDeleteProduct);
-    //     // Return the cart item
-    //     this.cartItem = this.cartService.findItem(id);
+    //     this.product$.subscribe((addAndDeleteProduct: Product) => this.addAndDeleteProduct = addAndDeleteProduct);
+    //     this.cartItem = this.buyService.findItem(id);
     //   });
   }
 
   addToCart() {
     this.cartItem = this.buyService.addProduct(this.product);
   }
-
   removeFromCart() {
     this.cartItem = this.buyService.removeProduct(this.product);
   }

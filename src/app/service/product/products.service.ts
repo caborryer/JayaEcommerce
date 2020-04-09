@@ -87,6 +87,7 @@ export class ProductsService {
       price: product.price,
       seller: this.user.name,
       uid: this.user.uid,
+      userImage: this.user.profileImage,
       image: this.url,
       fileRef: this.filePath,
     };
