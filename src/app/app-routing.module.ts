@@ -12,12 +12,12 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'messages', component: ChatComponent},
-  {path: 'products', component: MyProductsComponent},
-  {path: 'productDetails/:id', component: ProductDetailComponent},
-  {path: 'product/:id', component: ProductComponent},
-  {path: 'editProduct/:id', component: EditProductComponent},
-  {path: 'profile', component: UserComponent},
+  {path: 'messages', component: ChatComponent, canActivate: [AuthGuard]},
+  {path: 'products', component: MyProductsComponent, canActivate: [AuthGuard]},
+  {path: 'productDetails/:id', component: ProductDetailComponent, canActivate: [AuthGuard]},
+  {path: 'product/:id', component: ProductComponent, canActivate: [AuthGuard]},
+  {path: 'editProduct/:id', component: EditProductComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: UserComponent, canActivate: [AuthGuard]},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 
