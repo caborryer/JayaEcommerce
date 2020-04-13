@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate{
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    // @ts-ignore
     return this.afsAuth.authState
       .pipe(take(1))
       .pipe(map(authState => !!authState))
