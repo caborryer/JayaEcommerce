@@ -13,7 +13,7 @@
                 <a class="nav-link" routerLink="/home">Home</a>
             </li>
             <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" *ngIf="authService.user.uid"  routerLink="/products">My products</a>
+                <a class="nav-link" *ngIf="isLogged"  routerLink="/products">My products</a>
             </li>
         </ul>
         <ul class="navbar-nav left">
@@ -22,12 +22,12 @@
                     Menu
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <button class="dropdown-item" *ngIf="authService.user.uid" routerLink="/profile">Mi profile</button>
-                    <button class="dropdown-item" *ngIf="authService.user.uid"  routerLink="/messages">Messages</button>
+                    <button class="dropdown-item" *ngIf="isLogged" routerLink="/profile">Mi profile</button>
+                    <button class="dropdown-item" *ngIf="isLogged"  routerLink="/messages">Messages</button>
                     <div class="dropdown-divider"></div>
-                    <button class="dropdown-item" *ngIf="authService.user.uid" routerLink="/products">My products</button>
-                    <button class="dropdown-item" *ngIf="authService.user.uid"  (click)="authService.logout()">Logout </button>
-                    <button class="dropdown-item" *ngIf="!authService.user.uid" (click)="login('google')">Login</button>
+                    <button class="dropdown-item" *ngIf="isLogged" routerLink="/products">My products</button>
+                    <button class="dropdown-item" *ngIf="isLogged"  (click)="logout()">Logout </button>
+                    <button class="dropdown-item" *ngIf="!isLogged" (click)="authService.login()">Login</button>
                 </div>
             </li>
         </ul>
