@@ -60,7 +60,7 @@
 
 .chat-window{
     padding: 10px;
-    width: 300px;
+    width: 1000px;
     height: 400px;
     overflow: hidden;
     border: 1px solid #4080FF;
@@ -69,6 +69,13 @@
 
 .app-mensajes{
     overflow-y:scroll;
+    height:270px;
+    /*background:gray;*/
+    padding: 5px;
+}
+
+.scroll{
+    /*overflow-y:scroll;*/
     height:270px;
     /*background:gray;*/
     padding: 5px;

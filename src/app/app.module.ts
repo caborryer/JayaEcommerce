@@ -31,6 +31,7 @@ import {environment} from '../environments/environment';
 import { ChatService } from './service/chat/chat.service';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { SecureDomPipe } from './pipes/secure-dom.pipe';
+import { CartItemsComponent } from './components/cart-items/cart-items.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { SecureDomPipe } from './pipes/secure-dom.pipe';
     ProductDetailComponent,
     EditProductComponent,
     SecureDomPipe,
+    CartItemsComponent,
 
   ],
   imports: [

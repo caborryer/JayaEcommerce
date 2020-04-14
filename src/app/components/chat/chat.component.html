@@ -1,8 +1,13 @@
 <div class="container main-container">
     <div class="chat-window">
-        <h1>Chat</h1>
-        <hr>
+        <h1>Chat with:</h1>
+
         <div class="app-mensajes" id="app-mensajes">
+            <div class="card" id="scroll" *ngFor="let message of message$ | async">
+                <div class="card-body">
+                    {{message.name}}
+                </div>
+            </div>
             <div *ngFor="let chat of chatService.chats"
                  [ngClass]="{'text-right': chatService.user.uid == chat.uid}">
                 <span class="badge" [ngClass]="{'badge-success': chatService.user.uid == chat.uid,

@@ -5,6 +5,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { map} from 'rxjs/operators';
 import { AuthService } from '../auth.service';
+import { Observable } from 'rxjs';
+import { ProductsInterface } from '../../models/products.interface';
 
 
 @Injectable({
@@ -51,6 +53,21 @@ export class ChatService {
       uid: this.user.uid
     };
     return this.itemsCollection.add(message);
-
   }
+
+  public getAllMessages(): Observable <Message[]>{
+    return this.itemsCollection
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(a => {
+            const data = a.payload.doc.data() as Message;
+            const id = a.payload.doc.id;
+            return { id, ...data}
+          }))
+      )
+  }
+
+
+
 }
