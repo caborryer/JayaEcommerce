@@ -41,14 +41,11 @@ export class EditProductComponent implements OnInit {
   }
 
   editProduct(product : ProductsInterface){
-    console.log('Img', this.image);
-    console.log('original', this.imageOriginal);
     if (this.image === this.imageOriginal){
       product.image = this.imageOriginal;
       this.productsService.editProductById(product)
     } else {
       this.productsService.editProductById(product, this.image)
-
     }
   }
 
