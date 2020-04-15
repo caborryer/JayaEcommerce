@@ -1,28 +1,4 @@
-<div class="container main-container">
-    <div class="chat-window">
-        <h1>Chat with:</h1>
-
-        <div class="app-mensajes" id="app-mensajes">
-            <div class="card" id="scroll" *ngFor="let message of message$ | async">
-                <div class="card-body">
-                    {{message.name}}
-                </div>
-            </div>
-            <div *ngFor="let chat of chatService.chats"
-                 [ngClass]="{'text-right': chatService.user.uid == chat.uid}">
-                <span class="badge" [ngClass]="{'badge-success': chatService.user.uid == chat.uid,
-                                      'badge-primary': chatService.user.uid != chat.uid}">{{chat.name}}</span>
-                <p>
-                    {{chat.message}}
-                </p>
-            </div>
-        </div>
-        <input type="text"
-               name="message"
-               [(ngModel)]="message"
-               (keyup.enter)="sendMessage()"
-               class="form-control"
-               placeholder="Send message">
-
-    </div>
+<div class="container-wrapper container d-flex">
+   <app-chatroom-list class="w-25"></app-chatroom-list>
+    <app-chatroom-windows class="w-75"></app-chatroom-windows>
 </div>
