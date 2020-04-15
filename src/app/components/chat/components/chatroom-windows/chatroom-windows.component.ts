@@ -14,7 +14,7 @@ export class ChatroomWindowsComponent implements OnInit, OnDestroy, AfterViewChe
 
   private subscriptions: Subscription[] = [];
   public chatroom: Observable<any>;
-  public messages: Observable<any>;
+  public $messages: Observable<any>;
 
   constructor(private route: ActivatedRoute, private chatService: ChatService) {
     this.subscriptions.push(
@@ -25,7 +25,7 @@ export class ChatroomWindowsComponent implements OnInit, OnDestroy, AfterViewChe
 
     this.subscriptions.push(
       this.chatService.selectedChatroomMessages.subscribe(messages => {
-        this.messages = messages;
+        this.$messages = messages;
       })
     );
   }

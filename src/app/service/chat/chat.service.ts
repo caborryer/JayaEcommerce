@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { AuthService } from '../auth.service';
+
 
 
 
