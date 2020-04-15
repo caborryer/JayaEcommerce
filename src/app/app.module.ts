@@ -12,6 +12,12 @@ import { ProductComponent } from './components/addAndDeleteProduct/product.compo
 import { UserComponent } from './components/user/user.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { CartItemsComponent } from './components/cart-items/cart-items.component';
+import { ChatInputComponent } from './components/chat/components/chat-input/chat-input.component';
+import { ChatMessageComponent } from './components/chat/components/chat-message/chat-message.component';
+import { ChatroomListComponent } from './components/chat/components/chatroom-list/chatroom-list.component';
+import { ChatroomTitleBarComponent } from './components/chat/components/chatroom-title-bar/chatroom-title-bar.component';
+import { ChatroomWindowsComponent } from './components/chat/components/chatroom-windows/chatroom-windows.component';
 
 // Forms
 import { FormsModule} from '@angular/forms';
@@ -30,13 +36,9 @@ import {environment} from '../environments/environment';
 // Service
 import { ChatService } from './service/chat/chat.service';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+// Pipes
 import { SecureDomPipe } from './pipes/secure-dom.pipe';
-import { CartItemsComponent } from './components/cart-items/cart-items.component';
-import { ChatInputComponent } from './components/chat/components/chat-input/chat-input.component';
-import { ChatMessageComponent } from './components/chat/components/chat-message/chat-message.component';
-import { ChatroomListComponent } from './components/chat/components/chatroom-list/chatroom-list.component';
-import { ChatroomTitleBarComponent } from './components/chat/components/chatroom-title-bar/chatroom-title-bar.component';
-import { ChatroomWindowsComponent } from './components/chat/components/chatroom-windows/chatroom-windows.component';
+
 
 
 @NgModule({

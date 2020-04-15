@@ -12,7 +12,12 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'messages', component: ChatComponent, canActivate: [AuthGuard]},
+  {path: 'chat', canActivate: [AuthGuard],
+  children: [
+    { path: '', component: ChatComponent },
+    { path: ':chatroomId', component: ChatComponent }
+  ]
+  },
   {path: 'products', component: MyProductsComponent, canActivate: [AuthGuard]},
   {path: 'productDetails/:id', component: ProductDetailComponent, canActivate: [AuthGuard]},
   {path: 'product/:id', component: ProductComponent, canActivate: [AuthGuard]},
