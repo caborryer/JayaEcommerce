@@ -14,7 +14,7 @@ import { AuthService } from '../auth.service';
 })
 export class ChatService {
   public user: any = {};
-  public chatrooms: Observable<any>;
+  public chats: Observable<any>;
   public changeChatroom: BehaviorSubject<string | null> = new BehaviorSubject(null);
   public selectedChatroom: Observable<any>;
   public selectedChatroomMessages: Observable<any>;
@@ -25,13 +25,13 @@ export class ChatService {
 
     this.selectedChatroom = this.changeChatroom.pipe(switchMap(chatroomId => {
       if (chatroomId) {
-        return afs.doc(`chatrooms/${chatroomId}`).valueChanges();
+        return afs.doc(`chats/${chatroomId}`).valueChanges();
       }
       return of(null);
     }));
     this.selectedChatroomMessages = this.changeChatroom.pipe(switchMap(chatroomId => {
       if (chatroomId) {
-        return afs.collection(`chatrooms/${chatroomId}/messages`, ref => {
+        return afs.collection(`chats/${chatroomId}/messages`, ref => {
           return ref.orderBy('createdAt', 'desc').limit(100);
         })
           .valueChanges()
@@ -43,7 +43,7 @@ export class ChatService {
       return of(null);
     }))
 
-    this.chatrooms = afs.collection('chatrooms').valueChanges();
+    this.chats = afs.collection('chats').valueChanges();
 
   }
   public createMessage(text: string): void {
@@ -55,7 +55,7 @@ export class ChatService {
       uid: this.user.uid
     };
 
-    this.afs.collection(`chatrooms/${chatroomId}/messages`).add(message);
+    this.afs.collection(`chats/${chatroomId}/messages`).add(message);
   }
 
 
