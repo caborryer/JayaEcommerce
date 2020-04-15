@@ -1,0 +1,12 @@
+
+.input-group {
+    align-self: flex-end;
+}
+
+.form-control {
+    border-radius: 0;
+    border: 0;
+    background-color: beige;
+}
+
+

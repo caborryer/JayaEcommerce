@@ -23,7 +23,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <button class="dropdown-item" *ngIf="isLogged" routerLink="/profile">Mi profile</button>
-                    <button class="dropdown-item" *ngIf="isLogged"  routerLink="/messages">Messages</button>
+                    <button class="dropdown-item" *ngIf="isLogged"  routerLink="/chat">Messages</button>
                     <div class="dropdown-divider"></div>
                     <button class="dropdown-item" *ngIf="isLogged" routerLink="/products">My products</button>
                     <button class="dropdown-item" *ngIf="isLogged"  (click)="logout()">Logout </button>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/product/products.service';
 import { Observable } from 'rxjs';
 import { ProductsInterface } from '../../models/products.interface';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserInterface } from '../../models/user.interface';

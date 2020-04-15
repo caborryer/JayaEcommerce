@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import {Message} from '../../models/message.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { map} from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { AuthService } from '../auth.service';
-import { Observable } from 'rxjs';
-import { ProductsInterface } from '../../models/products.interface';
+
 
 
 @Injectable({
@@ -14,60 +14,49 @@ import { ProductsInterface } from '../../models/products.interface';
 })
 export class ChatService {
   public user: any = {};
-  private itemsCollection: AngularFirestoreCollection<Message>;
-  public chats: Message[] = [];
+  public chatrooms: Observable<any>;
+  public changeChatroom: Observable<string | null> = new BehaviorSubject(null);
+  public selectedChatroom: Observable<any>;
+  public selectedChatroomMessages: Observable<any>;
+
 
   constructor(private afs: AngularFirestore,
               public auth: AngularFireAuth) {
 
-    this.auth.authState.subscribe( user => {
-      // console.log('Null state: ', user);
-      if (!user) {
-        return;
+    this.selectedChatroom = this.changeChatroom.pipe(switchMap(chatroomId => {
+      if (chatroomId) {
+        return afs.doc(`chatrooms/${chatroomId}`).valueChanges();
       }
-      this.user.name = user.displayName;
-      this.user.uid = user.uid;
-    });
-  }
+      return of(null);
+    }));
+    this.selectedChatroomMessages = this.changeChatroom.pipe(switchMap(chatroomId => {
+      if (chatroomId) {
+        return afs.collection(`chatrooms/${chatroomId}/messages`, ref => {
+          return ref.orderBy('createdAt', 'desc').limit(100);
+        })
+          .valueChanges()
+          .pipe(map(arr => arr.reverse())
 
-  loadMessages() {
-    this.itemsCollection = this.afs.collection<Message>('chats',
-        ref => ref.orderBy('date', 'desc')
-      .limit(5));
-    return this.itemsCollection.valueChanges()
-      .pipe( map((messages: Message[]) => {
-        // console.log(messages);
-        this.chats = [];
-        for (let message of messages) {
-          this.chats.unshift(message);
-        }
-        return this.chats;
-      }));
-  }
+          )
 
-  addMessage(text:string) {
+      }
+      return of(null);
+    }))
+
+    this.chatrooms = afs.collection('chatrooms').valueChanges();
+
+  }
+  public createMessage(text: string): void {
+    const chatroomId = this.changeChatroom;
     let message: Message = {
-      name: this.user.name,
+      sender: this.user.name,
       message: text,
       date: new Date().getTime(),
       uid: this.user.uid
     };
-    return this.itemsCollection.add(message);
-  }
 
-  public getAllMessages(): Observable <Message[]>{
-    return this.itemsCollection
-      .snapshotChanges()
-      .pipe(
-        map(actions =>
-          actions.map(a => {
-            const data = a.payload.doc.data() as Message;
-            const id = a.payload.doc.id;
-            return { id, ...data}
-          }))
-      )
+    this.afs.collection(`chatrooms/${chatroomId}/messages`).add(message);
   }
-
 
 
 }

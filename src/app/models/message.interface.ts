@@ -1,5 +1,5 @@
 export  interface Message {
-  name: string;
+  sender: string;
   message: string;
   date?: number;
   profileImage?: string;

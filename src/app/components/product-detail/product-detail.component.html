@@ -1,9 +1,8 @@
 <div *ngIf="product$ | async as product"
      class="container main-container animated fadeIn fast">
-    <div [ngClass]="{'text-right': chatService.user.uid == product.seller}">
+    <div >
         <h1>{{product.seller }} is selling : <span> {{product.name}}</span></h1>
-        <span routerLink="/messages" class="badge" [ngClass]="{'badge-success': chatService.user.uid == product.seller,
-                                      'badge-primary': chatService.user.uid != product.seller}">Talk with {{product.seller}}</span>
+        <span routerLink="/chat" class="badge badge-primary"> {{product.seller}}</span>
     </div>
     <br>
     <div class="row">
