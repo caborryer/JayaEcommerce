@@ -15,7 +15,7 @@ import { AuthService } from '../auth.service';
 export class ChatService {
   public user: any = {};
   public chatrooms: Observable<any>;
-  public changeChatroom: Observable<string | null> = new BehaviorSubject(null);
+  public changeChatroom: BehaviorSubject<string | null> = new BehaviorSubject(null);
   public selectedChatroom: Observable<any>;
   public selectedChatroomMessages: Observable<any>;
 
