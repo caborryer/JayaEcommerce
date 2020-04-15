@@ -1,6 +1,6 @@
 <div *ngIf="product$ | async as product"
      class="container main-container animated fadeIn fast">
-    <div >
+    <div>
         <h1>{{product.seller }} is selling : <span> {{product.name}}</span></h1>
         <span routerLink="/chat" class="badge badge-primary"> {{product.seller}}</span>
     </div>
@@ -19,30 +19,29 @@
 
             <div class="col-md-7 left">
                 <form class="form-horizontal">
-                    <div class="form-group row">
-                        <label for="quantity" class="col-xs-3 form-control-label">I want: </label>
-                        <div class="col-xs-9">
-                            <h5 class="form-control-static"> {{quantity}}</h5>
-                        </div>
+                    <div class="form-group">
+                        <label for="quantity" class="col-xs-3 form-control-label">I want:
+                            <select class="form-control-static-right">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </label>
+
                     </div>
                     <div class="form-group row">
-                        <label for="amount" class="col-xs-3 form-control-label">Total: </label>
+                        <label for="amount" class="col-xs-3 form-control-label"></label>
                         <div class="col-xs-9">
-                            <h5 class="form-control-static">{{amount | currency:'USD':'$':'1.2-2'}}</h5>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-xs-12">
-                            <a class="btn btn-outline-success" (click)="addToCart()"><i class="fas fa-plus"></i></a>
-                            <a class="btn btn-outline-danger" (click)="removeFromCart()"><i
-                                    class="fas fa-minus"></i></a>
+                            <button routerLink="/home" type="button" class="btn btn-outline-success btn-block">
+                                <span class="form-control-static"> Buy {{amount | currency:'USD':'$':'1.2-2'}}</span>
+                            </button>
                         </div>
                     </div>
                 </form>
 
             </div>
-
-            <button routerLink="/home" type="button" class="btn btn-outline-danger">Back</button>
         </div>
     </div>
 </div>
