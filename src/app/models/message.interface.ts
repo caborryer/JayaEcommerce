@@ -1,7 +1,8 @@
+import {UserInterface} from './user.interface';
+
 export  interface Message {
-  sender: string;
+  sender: UserInterface;
   message: string;
   date?: number;
-  profileImage?: string;
   uid?: string;
 }
